@@ -32,7 +32,6 @@ function NoteBox(key, onClick) {
 	// Plays the audio associated with this NoteBox
 	this.play = function () {
 		playing++;
-		countPlay++;
 		// Always play from the beginning of the file.
 
 		// while(playlist > 0){
