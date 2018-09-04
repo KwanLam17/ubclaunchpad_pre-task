@@ -3,6 +3,7 @@ var NOTE_DURATION = 1000;
 var TIMEOUT_DURATION = 2500;
 var playlist = [];
 var playCount = 0;
+var countPlay = 0;
 
 
 
@@ -32,6 +33,7 @@ function NoteBox(key, onClick) {
 	// Plays the audio associated with this NoteBox
 	this.play = function () {
 		playing++;
+		countPlay++;
 		// Always play from the beginning of the file.
 
 		// while(playlist > 0){
@@ -87,9 +89,15 @@ function NoteBox(key, onClick) {
 
 	this.playAll = function () {
 		console.log("yesssss");
-		playlist.forEach(function (noteBox) {
-			setTimeout(noteBox.play(), NOTE_DURATION)
-		});
+		// playlist.forEach(function (noteBox) {
+		// 	setTimeout(noteBox.play, NOTE_DURATION)
+		// });
+		console.log(playlist);
+		for(var i = 0; i < playlist.length; i++) {
+			setTimeout(playlist[i].play, NOTE_DURATION * i);
+		}
+
+		playlist = [];
 	}
 
 	boxEl.addEventListener('mousedown', this.clickHandler);
