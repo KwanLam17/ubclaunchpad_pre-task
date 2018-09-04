@@ -88,11 +88,11 @@ function NoteBox(key, onClick) {
 	}.bind(this)
 
 	this.playAll = function () {
-		console.log("yesssss");
+		//console.log("yesssss");
 		// playlist.forEach(function (noteBox) {
 		// 	setTimeout(noteBox.play, NOTE_DURATION)
 		// });
-		console.log(playlist);
+		//console.log(playlist);
 		for(var i = 0; i < playlist.length; i++) {
 			setTimeout(playlist[i].play, NOTE_DURATION * i);
 		}
