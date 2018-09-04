@@ -1,6 +1,8 @@
 var KEYS = ['c', 'd', 'e', 'f'];
 var NOTE_DURATION = 1000;
 
+
+
 // NoteBox
 //
 // Acts as an interface to the coloured note boxes on the page, exposing methods
