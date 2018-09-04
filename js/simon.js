@@ -3,7 +3,6 @@ var NOTE_DURATION = 1000;
 var TIMEOUT_DURATION = 2500;
 var playlist = [];
 var playCount = 0;
-var countPlay = 0;
 
 
 
