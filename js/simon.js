@@ -2,6 +2,7 @@ var KEYS = ['c', 'd', 'e', 'f'];
 var NOTE_DURATION = 1000;
 var TIMEOUT_DURATION = 2500;
 var playlist = [];
+var playCount = 0;
 
 
 
@@ -22,6 +23,8 @@ function NoteBox(key, onClick) {
 	// Counter of how many play calls have been made without completing.
 	// Ensures that consequent plays won't prematurely remove the active class.
 	var playing = 0;
+
+	//var position = 0;
 	
 	this.key = key;
 	this.onClick = onClick || function () {};
@@ -30,6 +33,11 @@ function NoteBox(key, onClick) {
 	this.play = function () {
 		playing++;
 		// Always play from the beginning of the file.
+
+		// while(playlist > 0){
+		// 	setTimeout(this.decrement,TIMEOUT_DURATION);
+		// }
+
 		audioEl.currentTime = 0;
 		audioEl.play();
 
@@ -57,10 +65,32 @@ function NoteBox(key, onClick) {
 	this.clickHandler = function () {
 		if (!enabled) return;
 
-		console.log(playing)
+		//console.log(playing)
 		this.onClick(this.key)
-		setTimeout(this.play, TIMEOUT_DURATION)
+		playCount++
+		console.log(playCount)
+		playlist.push(this);
+		setTimeout(this.decrement, TIMEOUT_DURATION)
+
+		//setTimeout(this.play, TIMEOUT_DURATION)
 	}.bind(this)
+
+	this.decrement = function () {
+		//console.log("hi");
+		playCount--
+		//console.log(playCount);
+		if(playCount == 0){
+			//console.log("yay");
+			this.playAll();
+		}
+	}.bind(this)
+
+	this.playAll = function () {
+		console.log("yesssss");
+		playlist.forEach(function (noteBox) {
+			setTimeout(noteBox.play(), NOTE_DURATION)
+		});
+	}
 
 	boxEl.addEventListener('mousedown', this.clickHandler);
 }
